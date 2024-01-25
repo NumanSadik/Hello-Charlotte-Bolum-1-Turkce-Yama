@@ -76,7 +76,7 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             currentStep--;
             if (currentStep == 0)
             {
-                
+                this.PrevBtn.Enabled = false;
             }
         }
     }

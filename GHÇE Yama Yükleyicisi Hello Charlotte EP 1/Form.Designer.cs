@@ -214,14 +214,16 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
         #endregion
 
         private Panel Step0;
-        public Panel Buttons;
+        private Panel Step1;
+        private Panel Buttons;
+        public Button NextBtn;
+        public Button PrevBtn;
         private RichTextBox TranslationInformation;
         private PictureBox PreviewOfTheGame;
         private Panel FileExplorerPanel;
         private Button FileExplorerButton;
         private RichTextBox FileExplorerPath;
         private RichTextBox richTextBox1;
-        private Panel Step1;
         private PictureBox FileExamplePicture;
     }
 }
