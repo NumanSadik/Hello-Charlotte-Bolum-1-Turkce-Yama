@@ -42,6 +42,7 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             FileExplorerPath = new RichTextBox();
             richTextBox1 = new RichTextBox();
             Step1 = new Panel();
+            FileExamplePicture = new PictureBox();
             NextBtn = new Button();
             PrevBtn = new Button();
             Step0.SuspendLayout();
@@ -49,6 +50,7 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             Buttons.SuspendLayout();
             FileExplorerPanel.SuspendLayout();
             Step1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)FileExamplePicture).BeginInit();
             SuspendLayout();
             // 
             // NextBtn
@@ -70,6 +72,7 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             PrevBtn.TabIndex = 1;
             PrevBtn.Text = "Önceki";
             PrevBtn.UseVisualStyleBackColor = true;
+            PrevBtn.Click += PrevBtn_Click;
             // 
             // Step0
             // 
@@ -80,7 +83,6 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             Step0.Name = "Step0";
             Step0.Size = new Size(460, 394);
             Step0.TabIndex = 0;
-            Step0.Visible = false;
             // 
             // PreviewOfTheGame
             // 
@@ -146,25 +148,43 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             FileExplorerPath.ScrollBars = RichTextBoxScrollBars.None;
             FileExplorerPath.Size = new Size(356, 30);
             FileExplorerPath.TabIndex = 0;
-            FileExplorerPath.Text = "rgss3a dosyasının konumu";
+            FileExplorerPath.Text = "";
+            FileExplorerPath.TextChanged += FileExplorerPath_TextChanged;
             // 
             // richTextBox1
             // 
             richTextBox1.Location = new Point(3, 3);
             richTextBox1.Name = "richTextBox1";
+            richTextBox1.ReadOnly = true;
             richTextBox1.Size = new Size(454, 203);
             richTextBox1.TabIndex = 1;
-            richTextBox1.Text = "Oyunun yüklü olduğu dizindeki game.rgss3a dosyasını seçiniz";
+            richTextBox1.Text = "Steam üzerinden yüklenmiş olan Hello Charlotte EP1 oyununun ana dizinindeki Game.rgss3a dosyasını seçiniz.\n\nÖrnek yol:\n\"C:\\Program Files (x86)\\Steam\\steamapps\\common\\Hello Charlotte\\Game.rgss3a\"\n";
+            richTextBox1.TextChanged += richTextBox1_TextChanged;
             // 
             // Step1
             // 
+            Step1.Controls.Add(FileExamplePicture);
             Step1.Controls.Add(richTextBox1);
             Step1.Controls.Add(FileExplorerPanel);
             Step1.Location = new Point(12, 12);
             Step1.Name = "Step1";
             Step1.Size = new Size(460, 394);
             Step1.TabIndex = 2;
-            Step1.Visible = false;
+            // 
+            // FileExamplePicture
+            // 
+            FileExamplePicture.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            FileExamplePicture.BackgroundImage = Properties.Resources.Ekran_görüntüsü_2024_01_25_194655;
+            FileExamplePicture.BackgroundImageLayout = ImageLayout.Zoom;
+            FileExamplePicture.BorderStyle = BorderStyle.Fixed3D;
+            FileExamplePicture.ErrorImage = null;
+            FileExamplePicture.InitialImage = null;
+            FileExamplePicture.Location = new Point(3, 255);
+            FileExamplePicture.Name = "FileExamplePicture";
+            FileExamplePicture.Size = new Size(454, 120);
+            FileExamplePicture.TabIndex = 2;
+            FileExamplePicture.TabStop = false;
+            FileExamplePicture.Click += pictureBox1_Click_1;
             // 
             // Window
             // 
@@ -188,6 +208,7 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             Buttons.ResumeLayout(false);
             FileExplorerPanel.ResumeLayout(false);
             Step1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)FileExamplePicture).EndInit();
             ResumeLayout(false);
         }
 
@@ -202,5 +223,6 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
         private RichTextBox FileExplorerPath;
         private RichTextBox richTextBox1;
         private Panel Step1;
+        private PictureBox FileExamplePicture;
     }
 }
