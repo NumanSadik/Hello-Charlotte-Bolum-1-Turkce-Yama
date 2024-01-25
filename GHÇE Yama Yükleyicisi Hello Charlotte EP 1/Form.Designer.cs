@@ -65,7 +65,6 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             // 
             // PrevBtn
             // 
-            PrevBtn.Enabled = false;
             PrevBtn.Location = new Point(3, 3);
             PrevBtn.Name = "PrevBtn";
             PrevBtn.Size = new Size(85, 30);

@@ -1,9 +1,11 @@
+using GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1.Properties;
 using System.Diagnostics;
 
 namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
 {
     public partial class Window : Form
     {
+        static public byte currentStep = 1;
         public Window()
         {
             InitializeComponent();
@@ -26,7 +28,7 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
 
         private void NextBtn_Click(object sender, EventArgs e)
         {
-            
+            currentStep++;
         }
 
         private void FileExplorerButton_Click(object sender, EventArgs e)
@@ -71,7 +73,11 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
 
         private void PrevBtn_Click(object sender, EventArgs e)
         {
-
+            currentStep--;
+            if (currentStep == 0)
+            {
+                
+            }
         }
     }
 }
