@@ -30,8 +30,6 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
         /// </summary>
         private void InitializeComponent()
         {
-            Button NextBtn;
-            Button PrevBtn;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Window));
             Step0 = new Panel();
             PreviewOfTheGame = new PictureBox();
@@ -43,8 +41,8 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             richTextBox1 = new RichTextBox();
             Step1 = new Panel();
             FileExamplePicture = new PictureBox();
-            NextBtn = new Button();
             PrevBtn = new Button();
+            NextBtn = new Button();
             Step0.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)PreviewOfTheGame).BeginInit();
             Buttons.SuspendLayout();
@@ -52,26 +50,6 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             Step1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)FileExamplePicture).BeginInit();
             SuspendLayout();
-            // 
-            // NextBtn
-            // 
-            NextBtn.Location = new Point(94, 3);
-            NextBtn.Name = "NextBtn";
-            NextBtn.Size = new Size(85, 30);
-            NextBtn.TabIndex = 0;
-            NextBtn.Text = "Sonraki";
-            NextBtn.UseVisualStyleBackColor = true;
-            NextBtn.Click += NextBtn_Click;
-            // 
-            // PrevBtn
-            // 
-            PrevBtn.Location = new Point(3, 3);
-            PrevBtn.Name = "PrevBtn";
-            PrevBtn.Size = new Size(85, 30);
-            PrevBtn.TabIndex = 1;
-            PrevBtn.Text = "Önceki";
-            PrevBtn.UseVisualStyleBackColor = true;
-            PrevBtn.Click += PrevBtn_Click;
             // 
             // Step0
             // 
@@ -114,6 +92,26 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             Buttons.Name = "Buttons";
             Buttons.Size = new Size(182, 37);
             Buttons.TabIndex = 1;
+            // 
+            // PrevBtn
+            // 
+            PrevBtn.Location = new Point(3, 3);
+            PrevBtn.Name = "PrevBtn";
+            PrevBtn.Size = new Size(85, 30);
+            PrevBtn.TabIndex = 1;
+            PrevBtn.Text = "Önceki";
+            PrevBtn.UseVisualStyleBackColor = true;
+            PrevBtn.Click += PrevBtn_Click;
+            // 
+            // NextBtn
+            // 
+            NextBtn.Location = new Point(94, 3);
+            NextBtn.Name = "NextBtn";
+            NextBtn.Size = new Size(85, 30);
+            NextBtn.TabIndex = 0;
+            NextBtn.Text = "Sonraki";
+            NextBtn.UseVisualStyleBackColor = true;
+            NextBtn.Click += NextBtn_Click;
             // 
             // FileExplorerPanel
             // 
@@ -169,6 +167,7 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             Step1.Name = "Step1";
             Step1.Size = new Size(460, 394);
             Step1.TabIndex = 2;
+            Step1.Visible = false;
             // 
             // FileExamplePicture
             // 
@@ -213,8 +212,8 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
 
         #endregion
 
-        private Panel Step0;
-        private Panel Step1;
+        public Panel Step0;
+        public Panel Step1;
         private Panel Buttons;
         public Button NextBtn;
         public Button PrevBtn;

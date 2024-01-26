@@ -1,14 +1,18 @@
 using GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1.Properties;
 using System.Diagnostics;
+using System.Security.Cryptography.X509Certificates;
 
 namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
 {
     public partial class Window : Form
     {
         static public byte currentStep = 1;
+        static public Panel[] steps = new Panel[5];
         public Window()
         {
             InitializeComponent();
+            steps[0] = Step0;
+            steps[1] = Step1;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -29,6 +33,11 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
         private void NextBtn_Click(object sender, EventArgs e)
         {
             currentStep++;
+            if (currentStep == 5)
+            {
+                NextBtn.Enabled = false;
+            }
+            PrevBtn.Enabled = true;
         }
 
         private void FileExplorerButton_Click(object sender, EventArgs e)
@@ -76,8 +85,9 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             currentStep--;
             if (currentStep == 0)
             {
-                this.PrevBtn.Enabled = false;
+                PrevBtn.Enabled = false;
             }
+            NextBtn.Enabled = true;
         }
     }
 }

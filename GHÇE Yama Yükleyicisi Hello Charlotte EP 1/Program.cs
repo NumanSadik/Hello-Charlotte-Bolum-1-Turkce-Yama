@@ -12,6 +12,11 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new Window());
+
+            while (Window.currentStep != Window.currentStep)
+            {
+                Window.steps[Window.currentStep].Visible = !Window.steps[Window.currentStep].Visible;
+            }
         }
     }
 }
