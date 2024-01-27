@@ -4,6 +4,8 @@ using System;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
+using System;
+using System.IO;
 
 namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
 {
@@ -47,25 +49,44 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
 
             if (currentStep == 3)
             {
-                using (Process pProcess = new Process())
+                string FolderPath = FileExplorerPath.Text.Remove(FileExplorerPath.Text.LastIndexOf("\\"));
+
+                try
                 {
-                    try
+                    using (Process pProcess = new Process())
                     {
-                        // RPGMakerDecrypter-cli
                         ProgressLog.Text += FileExplorerPath.Text + " ayıklanıyor.\n";
+
+                        // RPGMakerDecrypter-cli
                         pProcess.StartInfo.FileName = @"Resources/RPGMakerDecrypter-cli_2.exe";
-                        pProcess.StartInfo.Arguments = "\"" + FileExplorerPath.Text + "\""; //argument
+                        pProcess.StartInfo.Arguments = $"\"{FileExplorerPath.Text}\""; //argument
                         pProcess.StartInfo.UseShellExecute = false;
-                        pProcess.StartInfo.RedirectStandardOutput = true;
                         pProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                         pProcess.StartInfo.CreateNoWindow = true; //not diplay a windows
+                        pProcess.StartInfo.RedirectStandardError = true;
                         pProcess.Start();
                         pProcess.WaitForExit();
-                        ProgressLog.Text += FileExplorerPath.Text + " ayıklandı.\n";
-                    } catch (Exception ex)
-                    {
-                        ProgressLog.Text += "HATA: " + ex.ToString(); //The output result
                     }
+                    using (Process pProcess = new Process())
+                    {
+                        // VXAceTranslator
+                        pProcess.StartInfo.FileName = @"Resources/VXAceTranslator.exe";
+                        pProcess.StartInfo.Arguments = $"-d \"{FolderPath}\" " + $"-o \" {FolderPath}\\Translation\""; //argument
+                        pProcess.StartInfo.UseShellExecute = false;
+                        pProcess.StartInfo.RedirectStandardOutput = true;
+                        pProcess.StartInfo.RedirectStandardError = true;
+                        pProcess.Start();
+                        while (!pProcess.StandardOutput.EndOfStream)
+                        {
+                            string outputLine = pProcess.StandardOutput.ReadLine();
+                            ProgressLog.Text += outputLine + Environment.NewLine;
+                        }
+                        pProcess.WaitForExit();
+
+                        ProgressLog.Text += FileExplorerPath.Text + " ayıklandı.\n";
+                    }
+                } catch (Exception ex) {
+                    ProgressLog.Text += $"HATA:\n{ex}";
                 }
             }
         }

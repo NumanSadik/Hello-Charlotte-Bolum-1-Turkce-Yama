@@ -11,7 +11,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\LICENSE for VXAceTranslator.txt" />
+    <None Remove="Resources\LICENSE of RPGMakerDecrypter-cli_2.txt" />
     <None Remove="Resources\RPGMakerDecrypter-cli_2.exe" />
+    <None Remove="Resources\VXAceTranslator.exe" />
     <None Remove="RPGMakerDecrypter-cli" />
   </ItemGroup>
 
@@ -20,7 +23,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\LICENSE for VXAceTranslator.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\LICENSE of RPGMakerDecrypter-cli_2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\RPGMakerDecrypter-cli_2.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\VXAceTranslator.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
