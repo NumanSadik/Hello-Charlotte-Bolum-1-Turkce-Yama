@@ -1,6 +1,9 @@
 using GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1.Properties;
 using System.Diagnostics;
+using System;
+using System.IO;
 using System.Security.Cryptography.X509Certificates;
+using System.Windows.Forms;
 
 namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
 {
@@ -37,25 +40,33 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             }
             PrevBtn.Enabled = true;
 
-            if (currentStep == 1)
+            if (currentStep == 2)
             {
                 NextBtn.Enabled = false;
             }
 
-            if (currentStep == 2)
+            if (currentStep == 3)
             {
-                /*using (Process pProcess = new Process())
+                using (Process pProcess = new Process())
                 {
-                    pProcess.StartInfo.FileName = @ "RPGMakerDecrypter-cli";
-                    pProcess.StartInfo.Arguments = FileExplorerPath.Text; //argument
-                    pProcess.StartInfo.UseShellExecute = false;
-                    pProcess.StartInfo.RedirectStandardOutput = true;
-                    //pProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                    //pProcess.StartInfo.CreateNoWindow = true; //not diplay a windows
-                    pProcess.Start();
-                    ProgressLog.Text = pProcess.StandardOutput.ReadToEnd(); //The output result
-                    pProcess.WaitForExit();
-                }*/
+                    try
+                    {
+                        // RPGMakerDecrypter-cli
+                        ProgressLog.Text += FileExplorerPath.Text + " ayıklanıyor.\n";
+                        pProcess.StartInfo.FileName = @"Resources/RPGMakerDecrypter-cli_2.exe";
+                        pProcess.StartInfo.Arguments = "\"" + FileExplorerPath.Text + "\""; //argument
+                        pProcess.StartInfo.UseShellExecute = false;
+                        pProcess.StartInfo.RedirectStandardOutput = true;
+                        pProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                        pProcess.StartInfo.CreateNoWindow = true; //not diplay a windows
+                        pProcess.Start();
+                        pProcess.WaitForExit();
+                        ProgressLog.Text += FileExplorerPath.Text + " ayıklandı.\n";
+                    } catch (Exception ex)
+                    {
+                        ProgressLog.Text += "HATA: " + ex.ToString(); //The output result
+                    }
+                }
             }
         }
 
@@ -74,7 +85,6 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
                 {
                     //Get the path of specified file
                     filePath = openFileDialog.FileName;
-                    NextBtn.Enabled = true;
                 }
             }
             FileExplorerPath.Text = filePath;
@@ -83,6 +93,17 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
         private void Window_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void FileExplorerPath_TextChanged(object sender, EventArgs e)
+        {
+            if(FileExplorerPath!=null)
+            {
+                NextBtn.Enabled = true;
+            } else
+            {
+                NextBtn.Enabled = false;
+            }
         }
     }
 }

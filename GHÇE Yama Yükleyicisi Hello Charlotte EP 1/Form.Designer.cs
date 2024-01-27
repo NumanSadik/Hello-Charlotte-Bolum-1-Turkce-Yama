@@ -132,6 +132,7 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             FileExplorerPath.Size = new Size(356, 30);
             FileExplorerPath.TabIndex = 0;
             FileExplorerPath.Text = "";
+            FileExplorerPath.TextChanged += FileExplorerPath_TextChanged;
             // 
             // PreviewOfTheGame
             // 
