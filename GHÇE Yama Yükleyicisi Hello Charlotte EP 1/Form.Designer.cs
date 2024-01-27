@@ -71,7 +71,6 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             PreviewOfTheGame.SizeMode = PictureBoxSizeMode.CenterImage;
             PreviewOfTheGame.TabIndex = 1;
             PreviewOfTheGame.TabStop = false;
-            PreviewOfTheGame.Click += pictureBox1_Click;
             // 
             // TranslationInformation
             // 
@@ -81,7 +80,6 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             TranslationInformation.Size = new Size(266, 394);
             TranslationInformation.TabIndex = 0;
             TranslationInformation.Text = resources.GetString("TranslationInformation.Text");
-            TranslationInformation.TextChanged += richTextBox1_TextChanged_1;
             // 
             // Buttons
             // 
@@ -146,7 +144,6 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             FileExplorerPath.Size = new Size(356, 30);
             FileExplorerPath.TabIndex = 0;
             FileExplorerPath.Text = "";
-            FileExplorerPath.TextChanged += FileExplorerPath_TextChanged;
             // 
             // richTextBox1
             // 
@@ -156,7 +153,6 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             richTextBox1.Size = new Size(454, 203);
             richTextBox1.TabIndex = 1;
             richTextBox1.Text = "Steam üzerinden yüklenmiş olan Hello Charlotte EP1 oyununun ana dizinindeki Game.rgss3a dosyasını seçiniz.\n\nÖrnek yol:\n\"C:\\Program Files (x86)\\Steam\\steamapps\\common\\Hello Charlotte\\Game.rgss3a\"\n";
-            richTextBox1.TextChanged += richTextBox1_TextChanged;
             // 
             // Step1
             // 
@@ -182,7 +178,6 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             FileExamplePicture.Size = new Size(454, 120);
             FileExamplePicture.TabIndex = 2;
             FileExamplePicture.TabStop = false;
-            FileExamplePicture.Click += pictureBox1_Click_1;
             // 
             // Window
             // 
@@ -200,7 +195,7 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             Name = "Window";
             ShowIcon = false;
             Text = "Game Hunters Çeviri Ekibi Yama Yükleyicisi";
-            Load += Form1_Load;
+            Load += Window_Load;
             Step0.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)PreviewOfTheGame).EndInit();
             Buttons.ResumeLayout(false);

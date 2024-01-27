@@ -7,33 +7,19 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
     public partial class Window : Form
     {
         static public byte currentStep = 1;
-        static public Panel[] steps = new Panel[5];
+        static public List<Panel> steps = new List<Panel>();
         public Window()
         {
             InitializeComponent();
-            steps[0] = Step0;
-            steps[1] = Step1;
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void richTextBox1_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
+            steps.Add(Step0);
+            steps.Add(Step1);
         }
 
         private void NextBtn_Click(object sender, EventArgs e)
         {
             currentStep++;
-            if (currentStep == 5)
+            steps[currentStep - 1].Visible = true;
+            if (currentStep == steps.Count)
             {
                 NextBtn.Enabled = false;
             }
@@ -60,34 +46,20 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             FileExplorerPath.Text = filePath;
         }
 
-        private void FileExplorerPath_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void PrevBtn_Click(object sender, EventArgs e)
         {
             currentStep--;
+            steps[currentStep].Visible = false;
             if (currentStep == 0)
             {
                 PrevBtn.Enabled = false;
             }
             NextBtn.Enabled = true;
+        }
+
+        private void Window_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
