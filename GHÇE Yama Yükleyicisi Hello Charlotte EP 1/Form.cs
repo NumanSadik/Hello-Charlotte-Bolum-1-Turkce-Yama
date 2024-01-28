@@ -75,16 +75,16 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
                             pProcess.StartInfo.FileName = @"Resources/VXAceTranslator.exe";
                             pProcess.StartInfo.Arguments = $"-d \"{FolderPath}\" " + $"-o \"{FolderPath}\\Translation\""; //argument
                             pProcess.StartInfo.UseShellExecute = false;
-                            pProcess.StartInfo.RedirectStandardOutput = true;
+                            //pProcess.StartInfo.RedirectStandardOutput = true;
                             pProcess.StartInfo.RedirectStandardError = true;
                             pProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                             pProcess.StartInfo.CreateNoWindow = true; //not diplay a windows
                             pProcess.Start();
-                            while (!pProcess.StandardOutput.EndOfStream)
+                            /*while (!pProcess.StandardOutput.EndOfStream)
                             {
                                 string outputLine = pProcess.StandardOutput.ReadLine();
                                 ProgressLog.Text += outputLine + Environment.NewLine;
-                            }
+                            }*/
                             pProcess.WaitForExit();
 
                             ProgressLog.Text += FileExplorerPath.Text + " ayıklandı.\n";
@@ -101,16 +101,16 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
                             pProcess.StartInfo.FileName = @"Resources/VXAceTranslator.exe";
                             pProcess.StartInfo.Arguments = $"-o \"{FolderPath}\\Data\" " + $"-c \"{FolderPath}\\Translation\""; //argument
                             pProcess.StartInfo.UseShellExecute = false;
-                            pProcess.StartInfo.RedirectStandardOutput = true;
+                            //pProcess.StartInfo.RedirectStandardOutput = true;
                             pProcess.StartInfo.RedirectStandardError = true;
                             pProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                             pProcess.StartInfo.CreateNoWindow = true; //not diplay a windows
                             pProcess.Start();
-                            while (!pProcess.StandardOutput.EndOfStream)
+                            /*while (!pProcess.StandardOutput.EndOfStream)
                             {
                                 string outputLine = pProcess.StandardOutput.ReadLine();
                                 ProgressLog.Text += outputLine + Environment.NewLine;
-                            }
+                            }*/
                             pProcess.WaitForExit();
                             Directory.Delete($"{FolderPath}\\Translation", true);
                             ProgressLog.Text += "Yazılar değiştirildi.\n";
@@ -138,16 +138,13 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
                 break;
             }
         }
-
         private void FileExplorerButton_Click(object sender, EventArgs e)
         {
             var filePath = string.Empty;
 
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                openFileDialog.InitialDirectory = "c:\\";
                 openFileDialog.Filter = "Rgss3a Dosyaları (*.rgss3a)|*.rgss3a|Tüm dosyalar (*.*)|*.*";
-                openFileDialog.FilterIndex = 1;
                 openFileDialog.RestoreDirectory = true;
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
