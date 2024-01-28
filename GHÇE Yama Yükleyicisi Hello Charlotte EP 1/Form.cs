@@ -43,99 +43,99 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             } else steps[currentStep - 1].Visible = true;
             PrevBtn.Enabled = true;
 
-            if (currentStep == 2)
+            switch (currentStep)
             {
-                NextBtn.Enabled = false;
-            }
+                case 2:
+                    NextBtn.Enabled = false;
+                    break;
+                case 3:
+                    NextBtn.Enabled = false;
+                    PrevBtn.Enabled = false;
 
-            if (currentStep == 3)
-            {
-                NextBtn.Enabled = false;
-                PrevBtn.Enabled = false;
-                string FolderPath = FileExplorerPath.Text.Remove(FileExplorerPath.Text.LastIndexOf("\\"));
-
-                try
-                {
-                    using (Process pProcess = new Process())
+                    try
                     {
-                        ProgressLog.Text += FileExplorerPath.Text + " ayıklanıyor.\n";
+                        string FolderPath = FileExplorerPath.Text.Remove(FileExplorerPath.Text.LastIndexOf("\\"));
+                        using (Process pProcess = new Process())
+                        {
+                            ProgressLog.Text += FileExplorerPath.Text + " ayıklanıyor.\n";
 
-                        // RPGMakerDecrypter-cli
-                        pProcess.StartInfo.FileName = @"Resources/RPGMakerDecrypter-cli_2.exe";
-                        pProcess.StartInfo.Arguments = $"\"{FileExplorerPath.Text}\""; //argument
-                        pProcess.StartInfo.UseShellExecute = false;
-                        pProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                        pProcess.StartInfo.CreateNoWindow = true; //not diplay a windows
-                        pProcess.StartInfo.RedirectStandardError = true;
-                        pProcess.Start();
-                        pProcess.WaitForExit();
+                            // RPGMakerDecrypter-cli
+                            pProcess.StartInfo.FileName = @"Resources/RPGMakerDecrypter-cli_2.exe";
+                            pProcess.StartInfo.Arguments = $"\"{FileExplorerPath.Text}\""; //argument
+                            pProcess.StartInfo.UseShellExecute = false;
+                            pProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                            pProcess.StartInfo.CreateNoWindow = true; //not diplay a windows
+                            pProcess.StartInfo.RedirectStandardError = true;
+                            pProcess.Start();
+                            pProcess.WaitForExit();
+                        }
+                        using (Process pProcess = new Process())
+                        {
+                            // VXAceTranslator Yazı Çıkarma
+                            pProcess.StartInfo.FileName = @"Resources/VXAceTranslator.exe";
+                            pProcess.StartInfo.Arguments = $"-d \"{FolderPath}\" " + $"-o \"{FolderPath}\\Translation\""; //argument
+                            pProcess.StartInfo.UseShellExecute = false;
+                            pProcess.StartInfo.RedirectStandardOutput = true;
+                            pProcess.StartInfo.RedirectStandardError = true;
+                            pProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                            pProcess.StartInfo.CreateNoWindow = true; //not diplay a windows
+                            pProcess.Start();
+                            while (!pProcess.StandardOutput.EndOfStream)
+                            {
+                                string outputLine = pProcess.StandardOutput.ReadLine();
+                                ProgressLog.Text += outputLine + Environment.NewLine;
+                            }
+                            pProcess.WaitForExit();
+
+                            ProgressLog.Text += FileExplorerPath.Text + " ayıklandı.\n";
+
+                            ProgressLog.Text += "Yazılar değiştiriliyor.\n";
+
+                            var TranslatedText = @"Resources/Translation.zip";
+                            var destinationPath = $"{FolderPath}";
+                            ZipFile.ExtractToDirectory(TranslatedText, destinationPath, true);
+
+
+                            ProgressLog.Text += "Yama Paketleniyor.\n";
+                            // VXAceTranslator Yazı Paketleme
+                            pProcess.StartInfo.FileName = @"Resources/VXAceTranslator.exe";
+                            pProcess.StartInfo.Arguments = $"-o \"{FolderPath}\\Data\" " + $"-c \"{FolderPath}\\Translation\""; //argument
+                            pProcess.StartInfo.UseShellExecute = false;
+                            pProcess.StartInfo.RedirectStandardOutput = true;
+                            pProcess.StartInfo.RedirectStandardError = true;
+                            pProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                            pProcess.StartInfo.CreateNoWindow = true; //not diplay a windows
+                            pProcess.Start();
+                            while (!pProcess.StandardOutput.EndOfStream)
+                            {
+                                string outputLine = pProcess.StandardOutput.ReadLine();
+                                ProgressLog.Text += outputLine + Environment.NewLine;
+                            }
+                            pProcess.WaitForExit();
+                            Directory.Delete($"{FolderPath}\\Translation", true);
+                            ProgressLog.Text += "Yazılar değiştirildi.\n";
+
+                            ProgressLog.Text += "Görseller ve yazı tipleri güncelleniyor.\n";
+                            var TranslatedResources = @"Resources/Resources.zip";
+                            ZipFile.ExtractToDirectory(TranslatedResources, destinationPath, true);
+                            ProgressLog.Text += "Görseller ve yazı tipleri güncellendi.\n";
+
+                            ProgressLog.Text += FileExplorerPath.Text + " siliniyor.\n";
+                            File.Delete(FileExplorerPath.Text);
+                            ProgressLog.Text += FileExplorerPath.Text + " silindi.\n\n";
+
+                            ProgressLog.Text += "Kurulum işlemi sona erdi";
+
+                            NextBtn.Text = "Bitir";
+                            NextBtn.Enabled = true;
+
+                        }
                     }
-                    using (Process pProcess = new Process())
+                    catch (Exception ex)
                     {
-                        // VXAceTranslator Yazı Çıkarma
-                        pProcess.StartInfo.FileName = @"Resources/VXAceTranslator.exe";
-                        pProcess.StartInfo.Arguments = $"-d \"{FolderPath}\" " + $"-o \"{FolderPath}\\Translation\""; //argument
-                        pProcess.StartInfo.UseShellExecute = false;
-                        pProcess.StartInfo.RedirectStandardOutput = true;
-                        pProcess.StartInfo.RedirectStandardError = true;
-                        pProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                        pProcess.StartInfo.CreateNoWindow = true; //not diplay a windows
-                        pProcess.Start();
-                        while (!pProcess.StandardOutput.EndOfStream)
-                        {
-                            string outputLine = pProcess.StandardOutput.ReadLine();
-                            ProgressLog.Text += outputLine + Environment.NewLine;
-                        }
-                        pProcess.WaitForExit();
-
-                        ProgressLog.Text += FileExplorerPath.Text + " ayıklandı.\n";
-
-                        ProgressLog.Text += "Yazılar değiştiriliyor.\n";
-
-                        var TranslatedText = @"Resources/Translation.zip";
-                        var destinationPath = $"{FolderPath}";
-                        ZipFile.ExtractToDirectory(TranslatedText, destinationPath, true);
-
-
-                        ProgressLog.Text += "Yama Paketleniyor.\n";
-                        // VXAceTranslator Yazı Paketleme
-                        pProcess.StartInfo.FileName = @"Resources/VXAceTranslator.exe";
-                        pProcess.StartInfo.Arguments = $"-o \"{FolderPath}\\Data\" " + $"-c \"{FolderPath}\\Translation\""; //argument
-                        pProcess.StartInfo.UseShellExecute = false;
-                        pProcess.StartInfo.RedirectStandardOutput = true;
-                        pProcess.StartInfo.RedirectStandardError = true;
-                        pProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                        pProcess.StartInfo.CreateNoWindow = true; //not diplay a windows
-                        pProcess.Start();
-                        while (!pProcess.StandardOutput.EndOfStream)
-                        {
-                            string outputLine = pProcess.StandardOutput.ReadLine();
-                            ProgressLog.Text += outputLine + Environment.NewLine;
-                        }
-                        pProcess.WaitForExit();
-                        Directory.Delete($"{FolderPath}\\Translation", true);
-                        ProgressLog.Text += "Yazılar değiştirildi.\n";
-
-                        ProgressLog.Text += "Görseller ve yazı tipleri güncelleniyor.\n";
-                        var TranslatedResources = @"Resources/Resources.zip";
-                        ZipFile.ExtractToDirectory(TranslatedResources, destinationPath, true);
-                        ProgressLog.Text += "Görseller ve yazı tipleri güncellendi.\n";
-
-                        ProgressLog.Text += FileExplorerPath.Text + " siliniyor.\n";
-                        File.Delete(FileExplorerPath.Text);
-                        ProgressLog.Text += FileExplorerPath.Text + " silindi.\n\n";
-
-                        ProgressLog.Text += "Kurulum işlemi sona erdi";
-
-                        NextBtn.Text = "Bitir";
-                        NextBtn.Enabled = true;
-
+                        ProgressLog.Text += $"HATA:\n{ex}";
                     }
-                }
-                catch (Exception ex)
-                {
-                    ProgressLog.Text += $"HATA:\n{ex}";
-                }
+                break;
             }
         }
 
@@ -159,14 +159,9 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             FileExplorerPath.Text = filePath;
         }
 
-        private void Window_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void FileExplorerPath_TextChanged(object sender, EventArgs e)
         {
-            if (FileExplorerPath != null)
+            if (FileExplorerPath.Text != String.Empty)
             {
                 NextBtn.Enabled = true;
             }

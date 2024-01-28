@@ -259,7 +259,6 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             Name = "Window";
             ShowIcon = false;
             Text = "Game Hunters Çeviri Ekibi Yama Yükleyicisi";
-            Load += Window_Load;
             Step0.ResumeLayout(false);
             Step1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)FileExamplePicture).EndInit();
