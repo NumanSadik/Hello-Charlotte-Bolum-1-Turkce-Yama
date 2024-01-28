@@ -71,7 +71,7 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
                     {
                         // VXAceTranslator
                         pProcess.StartInfo.FileName = @"Resources/VXAceTranslator.exe";
-                        pProcess.StartInfo.Arguments = $"-d \"{FolderPath}\" " + $"-o \" {FolderPath}\\Translation\""; //argument
+                        pProcess.StartInfo.Arguments = $"-d \"{FolderPath}\" " + $"-o \"{FolderPath}\\Translation\""; //argument
                         pProcess.StartInfo.UseShellExecute = false;
                         pProcess.StartInfo.RedirectStandardOutput = true;
                         pProcess.StartInfo.RedirectStandardError = true;
@@ -85,7 +85,9 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
 
                         ProgressLog.Text += FileExplorerPath.Text + " ayıklandı.\n";
                     }
-                } catch (Exception ex) {
+                }
+                catch (Exception ex)
+                {
                     ProgressLog.Text += $"HATA:\n{ex}";
                 }
             }
@@ -118,13 +120,19 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
 
         private void FileExplorerPath_TextChanged(object sender, EventArgs e)
         {
-            if(FileExplorerPath!=null)
+            if (FileExplorerPath != null)
             {
                 NextBtn.Enabled = true;
-            } else
+            }
+            else
             {
                 NextBtn.Enabled = false;
             }
+        }
+
+        private void ProgressLog_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
