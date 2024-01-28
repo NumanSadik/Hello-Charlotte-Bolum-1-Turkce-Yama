@@ -6,6 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 using System;
 using System.IO;
+using System.IO.Compression;
 
 namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
 {
@@ -69,12 +70,14 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
                     }
                     using (Process pProcess = new Process())
                     {
-                        // VXAceTranslator
+                        // VXAceTranslator Yazı Çıkarma
                         pProcess.StartInfo.FileName = @"Resources/VXAceTranslator.exe";
                         pProcess.StartInfo.Arguments = $"-d \"{FolderPath}\" " + $"-o \"{FolderPath}\\Translation\""; //argument
                         pProcess.StartInfo.UseShellExecute = false;
                         pProcess.StartInfo.RedirectStandardOutput = true;
                         pProcess.StartInfo.RedirectStandardError = true;
+                        pProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                        pProcess.StartInfo.CreateNoWindow = true; //not diplay a windows
                         pProcess.Start();
                         while (!pProcess.StandardOutput.EndOfStream)
                         {
@@ -84,6 +87,44 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
                         pProcess.WaitForExit();
 
                         ProgressLog.Text += FileExplorerPath.Text + " ayıklandı.\n";
+
+                        ProgressLog.Text += "Yazılar değiştiriliyor.\n";
+
+                        var TranslatedText = @"Resources/Translation.zip";
+                        var destinationPath = $"{FolderPath}";
+                        ZipFile.ExtractToDirectory(TranslatedText, destinationPath, true);
+
+
+                        ProgressLog.Text += "Yama Paketleniyor.\n";
+                        // VXAceTranslator Yazı Paketleme
+                        pProcess.StartInfo.FileName = @"Resources/VXAceTranslator.exe";
+                        pProcess.StartInfo.Arguments = $"-o \"{FolderPath}\\Data\" " + $"-c \"{FolderPath}\\Translation\""; //argument
+                        pProcess.StartInfo.UseShellExecute = false;
+                        pProcess.StartInfo.RedirectStandardOutput = true;
+                        pProcess.StartInfo.RedirectStandardError = true;
+                        pProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                        pProcess.StartInfo.CreateNoWindow = true; //not diplay a windows
+                        pProcess.Start();
+                        while (!pProcess.StandardOutput.EndOfStream)
+                        {
+                            string outputLine = pProcess.StandardOutput.ReadLine();
+                            ProgressLog.Text += outputLine + Environment.NewLine;
+                        }
+                        pProcess.WaitForExit();
+                        Directory.Delete($"{FolderPath}\\Translation", true);
+                        ProgressLog.Text += "Yazılar değiştirildi.\n";
+
+                        ProgressLog.Text += "Görseller ve yazı tipleri güncelleniyor.\n";
+                        var TranslatedResources = @"Resources/Resources.zip";
+                        ZipFile.ExtractToDirectory(TranslatedResources, destinationPath, true);
+                        ProgressLog.Text += "Görseller ve yazı tipleri güncellendi.\n";
+
+                        ProgressLog.Text += FileExplorerPath.Text + " siliniyor.\n";
+                        File.Delete(FileExplorerPath.Text);
+                        ProgressLog.Text += FileExplorerPath.Text + " silindi.\n\n";
+
+                        ProgressLog.Text += "Kurulum işlemi sona erdi";
+
                     }
                 }
                 catch (Exception ex)
@@ -132,7 +173,8 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
 
         private void ProgressLog_TextChanged(object sender, EventArgs e)
         {
-
+            ProgressLog.SelectionStart = ProgressLog.Text.Length;
+            ProgressLog.ScrollToCaret();
         }
     }
 }

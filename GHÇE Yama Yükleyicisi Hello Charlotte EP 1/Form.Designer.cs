@@ -202,6 +202,7 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             ProgressLog.Size = new Size(454, 388);
             ProgressLog.TabIndex = 0;
             ProgressLog.Text = "";
+            ProgressLog.WordWrap = false;
             ProgressLog.TextChanged += ProgressLog_TextChanged;
             // 
             // Window
