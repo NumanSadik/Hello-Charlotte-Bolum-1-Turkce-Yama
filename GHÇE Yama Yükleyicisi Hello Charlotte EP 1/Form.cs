@@ -20,6 +20,7 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             steps.Add(Step0);
             steps.Add(Step1);
             steps.Add(Step2);
+            steps.Add(Step3);
         }
 
         private void PrevBtn_Click(object sender, EventArgs e)
@@ -36,11 +37,10 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
         private void NextBtn_Click(object sender, EventArgs e)
         {
             currentStep++;
-            steps[currentStep - 1].Visible = true;
-            if (currentStep == steps.Count)
+            if (currentStep == steps.Count+1)
             {
-                NextBtn.Enabled = false;
-            }
+                Close();
+            } else steps[currentStep - 1].Visible = true;
             PrevBtn.Enabled = true;
 
             if (currentStep == 2)
@@ -50,6 +50,8 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
 
             if (currentStep == 3)
             {
+                NextBtn.Enabled = false;
+                PrevBtn.Enabled = false;
                 string FolderPath = FileExplorerPath.Text.Remove(FileExplorerPath.Text.LastIndexOf("\\"));
 
                 try
@@ -124,6 +126,9 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
                         ProgressLog.Text += FileExplorerPath.Text + " silindi.\n\n";
 
                         ProgressLog.Text += "Kurulum işlemi sona erdi";
+
+                        NextBtn.Text = "Bitir";
+                        NextBtn.Enabled = true;
 
                     }
                 }

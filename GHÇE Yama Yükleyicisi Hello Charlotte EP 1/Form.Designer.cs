@@ -41,8 +41,11 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             PreviewOfTheGame = new PictureBox();
             TranslationInformation = new RichTextBox();
             Buttons = new Panel();
-            Step2 = new Panel();
             ProgressLog = new RichTextBox();
+            Step2 = new Panel();
+            Step3 = new Panel();
+            pictureBox1 = new PictureBox();
+            richTextBox2 = new RichTextBox();
             PrevBtn = new Button();
             NextBtn = new Button();
             Step0.SuspendLayout();
@@ -52,7 +55,29 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             ((System.ComponentModel.ISupportInitialize)PreviewOfTheGame).BeginInit();
             Buttons.SuspendLayout();
             Step2.SuspendLayout();
+            Step3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
+            // 
+            // PrevBtn
+            // 
+            PrevBtn.Location = new Point(3, 3);
+            PrevBtn.Name = "PrevBtn";
+            PrevBtn.Size = new Size(85, 30);
+            PrevBtn.TabIndex = 1;
+            PrevBtn.Text = "Önceki";
+            PrevBtn.UseVisualStyleBackColor = true;
+            PrevBtn.Click += PrevBtn_Click;
+            // 
+            // NextBtn
+            // 
+            NextBtn.Location = new Point(94, 3);
+            NextBtn.Name = "NextBtn";
+            NextBtn.Size = new Size(85, 30);
+            NextBtn.TabIndex = 0;
+            NextBtn.Text = "Sonraki";
+            NextBtn.UseVisualStyleBackColor = true;
+            NextBtn.Click += NextBtn_Click;
             // 
             // Step0
             // 
@@ -165,35 +190,6 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             Buttons.Size = new Size(182, 37);
             Buttons.TabIndex = 1;
             // 
-            // PrevBtn
-            // 
-            PrevBtn.Location = new Point(3, 3);
-            PrevBtn.Name = "PrevBtn";
-            PrevBtn.Size = new Size(85, 30);
-            PrevBtn.TabIndex = 1;
-            PrevBtn.Text = "Önceki";
-            PrevBtn.UseVisualStyleBackColor = true;
-            PrevBtn.Click += PrevBtn_Click;
-            // 
-            // NextBtn
-            // 
-            NextBtn.Location = new Point(94, 3);
-            NextBtn.Name = "NextBtn";
-            NextBtn.Size = new Size(85, 30);
-            NextBtn.TabIndex = 0;
-            NextBtn.Text = "Sonraki";
-            NextBtn.UseVisualStyleBackColor = true;
-            NextBtn.Click += NextBtn_Click;
-            // 
-            // Step2
-            // 
-            Step2.Controls.Add(ProgressLog);
-            Step2.Location = new Point(9, 12);
-            Step2.Name = "Step2";
-            Step2.Size = new Size(460, 394);
-            Step2.TabIndex = 3;
-            Step2.Visible = false;
-            // 
             // ProgressLog
             // 
             ProgressLog.Location = new Point(3, 3);
@@ -204,6 +200,48 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             ProgressLog.Text = "";
             ProgressLog.WordWrap = false;
             ProgressLog.TextChanged += ProgressLog_TextChanged;
+            // 
+            // Step2
+            // 
+            Step2.Controls.Add(Step3);
+            Step2.Controls.Add(ProgressLog);
+            Step2.Location = new Point(9, 12);
+            Step2.Name = "Step2";
+            Step2.Size = new Size(460, 394);
+            Step2.TabIndex = 3;
+            Step2.Visible = false;
+            // 
+            // Step3
+            // 
+            Step3.BackColor = SystemColors.ControlLight;
+            Step3.Controls.Add(pictureBox1);
+            Step3.Controls.Add(richTextBox2);
+            Step3.Location = new Point(0, 0);
+            Step3.Name = "Step3";
+            Step3.Size = new Size(460, 394);
+            Step3.TabIndex = 4;
+            Step3.Visible = false;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BorderStyle = BorderStyle.Fixed3D;
+            pictureBox1.Image = Properties.Resources.hello_charlotte_orig;
+            pictureBox1.Location = new Point(0, 3);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(188, 394);
+            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox1.TabIndex = 1;
+            pictureBox1.TabStop = false;
+            // 
+            // richTextBox2
+            // 
+            richTextBox2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            richTextBox2.Location = new Point(194, 3);
+            richTextBox2.Name = "richTextBox2";
+            richTextBox2.ReadOnly = true;
+            richTextBox2.Size = new Size(266, 388);
+            richTextBox2.TabIndex = 0;
+            richTextBox2.Text = resources.GetString("richTextBox2.Text");
             // 
             // Window
             // 
@@ -229,24 +267,29 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
             ((System.ComponentModel.ISupportInitialize)PreviewOfTheGame).EndInit();
             Buttons.ResumeLayout(false);
             Step2.ResumeLayout(false);
+            Step3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         public Panel Step0;
-        public Panel Step1;
-        public Panel Step2;
         private Panel Buttons;
         public Button NextBtn;
         public Button PrevBtn;
         private RichTextBox TranslationInformation;
         private PictureBox PreviewOfTheGame;
+        public Panel Step1;
+        private PictureBox FileExamplePicture;
+        private RichTextBox richTextBox1;
         private Panel FileExplorerPanel;
         private Button FileExplorerButton;
         public RichTextBox FileExplorerPath;
-        private RichTextBox richTextBox1;
-        private PictureBox FileExamplePicture;
         public RichTextBox ProgressLog;
+        public Panel Step2;
+        public Panel Step3;
+        private PictureBox pictureBox1;
+        private RichTextBox richTextBox2;
     }
 }
