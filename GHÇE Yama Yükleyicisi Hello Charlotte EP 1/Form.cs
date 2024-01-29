@@ -1,11 +1,4 @@
-using GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1.Properties;
 using System.Diagnostics;
-using System;
-using System.IO;
-using System.Security.Cryptography.X509Certificates;
-using System.Windows.Forms;
-using System;
-using System.IO;
 using System.IO.Compression;
 
 namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
@@ -37,10 +30,11 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
         private void NextBtn_Click(object sender, EventArgs e)
         {
             currentStep++;
-            if (currentStep == steps.Count+1)
+            if (currentStep == steps.Count + 1)
             {
                 Close();
-            } else steps[currentStep - 1].Visible = true;
+            }
+            else steps[currentStep - 1].Visible = true;
             PrevBtn.Enabled = true;
 
             switch (currentStep)
@@ -135,7 +129,7 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
                     {
                         ProgressLog.Text += $"HATA:\n{ex}";
                     }
-                break;
+                    break;
             }
         }
         private void FileExplorerButton_Click(object sender, EventArgs e)

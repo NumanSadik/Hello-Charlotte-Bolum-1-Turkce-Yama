@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms.VisualStyles;
-
-namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
+﻿namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
 {
     partial class Window
     {
