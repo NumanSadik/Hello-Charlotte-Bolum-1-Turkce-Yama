@@ -57,26 +57,6 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // PrevBtn
-            // 
-            PrevBtn.Location = new Point(3, 3);
-            PrevBtn.Name = "PrevBtn";
-            PrevBtn.Size = new Size(85, 30);
-            PrevBtn.TabIndex = 1;
-            PrevBtn.Text = "Önceki";
-            PrevBtn.UseVisualStyleBackColor = true;
-            PrevBtn.Click += PrevBtn_Click;
-            // 
-            // NextBtn
-            // 
-            NextBtn.Location = new Point(94, 3);
-            NextBtn.Name = "NextBtn";
-            NextBtn.Size = new Size(85, 30);
-            NextBtn.TabIndex = 0;
-            NextBtn.Text = "Sonraki";
-            NextBtn.UseVisualStyleBackColor = true;
-            NextBtn.Click += NextBtn_Click;
-            // 
             // Step0
             // 
             Step0.BackColor = SystemColors.ControlLight;
@@ -187,6 +167,26 @@
             Buttons.Name = "Buttons";
             Buttons.Size = new Size(182, 37);
             Buttons.TabIndex = 1;
+            // 
+            // PrevBtn
+            // 
+            PrevBtn.Location = new Point(3, 3);
+            PrevBtn.Name = "PrevBtn";
+            PrevBtn.Size = new Size(85, 30);
+            PrevBtn.TabIndex = 1;
+            PrevBtn.Text = "Önceki";
+            PrevBtn.UseVisualStyleBackColor = true;
+            PrevBtn.Click += PrevBtn_Click;
+            // 
+            // NextBtn
+            // 
+            NextBtn.Location = new Point(94, 3);
+            NextBtn.Name = "NextBtn";
+            NextBtn.Size = new Size(85, 30);
+            NextBtn.TabIndex = 0;
+            NextBtn.Text = "Sonraki";
+            NextBtn.UseVisualStyleBackColor = true;
+            NextBtn.Click += NextBtn_Click;
             // 
             // ProgressLog
             // 
