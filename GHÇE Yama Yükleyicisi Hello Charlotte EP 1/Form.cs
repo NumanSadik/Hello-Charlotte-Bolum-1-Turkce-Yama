@@ -93,18 +93,18 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
                             ProgressLog.Text += "Yama Paketleniyor.\n";
                             // VXAceTranslator Yazı Paketleme
                             pProcess.StartInfo.FileName = @"Resources/VXAceTranslator.exe";
-                            pProcess.StartInfo.Arguments = $"-o \"{FolderPath}\\Data\" " + $"-c \"{FolderPath}\\Translation\""; //argument
+                            pProcess.StartInfo.Arguments = $"-c \"{FolderPath}\" " + $"-i \"{FolderPath}\\Translation\""; //argument
                             pProcess.StartInfo.UseShellExecute = false;
-                            //pProcess.StartInfo.RedirectStandardOutput = true;
+                            pProcess.StartInfo.RedirectStandardOutput = true;
                             pProcess.StartInfo.RedirectStandardError = true;
                             pProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
                             pProcess.StartInfo.CreateNoWindow = true; //not diplay a windows
                             pProcess.Start();
-                            /*while (!pProcess.StandardOutput.EndOfStream)
+                            while (!pProcess.StandardOutput.EndOfStream)
                             {
                                 string outputLine = pProcess.StandardOutput.ReadLine();
                                 ProgressLog.Text += outputLine + Environment.NewLine;
-                            }*/
+                            }
                             pProcess.WaitForExit();
                             Directory.Delete($"{FolderPath}\\Translation", true);
                             ProgressLog.Text += "Yazılar değiştirildi.\n";
