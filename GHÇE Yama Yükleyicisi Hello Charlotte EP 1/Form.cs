@@ -98,7 +98,7 @@ namespace GHÇE_Yama_Yükleyicisi_Hello_Charlotte_EP_1
                             pProcess.StartInfo.RedirectStandardOutput = true;
                             pProcess.StartInfo.RedirectStandardError = true;
                             pProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                            pProcess.StartInfo.CreateNoWindow = true; //not diplay a windows
+                            pProcess.StartInfo.CreateNoWindow = true; //not to diplay a window
                             pProcess.Start();
                             while (!pProcess.StandardOutput.EndOfStream)
                             {
