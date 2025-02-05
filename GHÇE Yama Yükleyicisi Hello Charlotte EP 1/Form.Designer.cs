@@ -273,8 +273,7 @@
             MaximumSize = new Size(569, 651);
             MinimumSize = new Size(569, 651);
             Name = "Window";
-            ShowIcon = false;
-            Text = "Bluesoul Çeviri Ekibi Yama Yükleyicisi";
+            Text = "BlueSoul Çeviri Ekibi Yama Yükleyicisi";
             Step0.ResumeLayout(false);
             Step1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)FileExamplePicture).EndInit();
